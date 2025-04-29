@@ -44,6 +44,7 @@
 }
 
 :root {
+  --blue-primary: #1b4fb4;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -116,7 +117,65 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
+
+/* ---------------------------------------------------------- */
+@keyframes waveColors {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  12.5% {
+    background-position: 50% 50%;
+  }
+
+  25% {
+    background-position: 100% 50%;
+  }
+
+  37.5% {
+    background-position: 50% 50%;
+  }
+
+  50% {
+    background-position: 0% 50%;
+  }
+
+  62.5% {
+    background-position: 50% 50%;
+  }
+
+  75% {
+    background-position: 100% 50%;
+  }
+
+  87.5% {
+    background-position: 50% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.waving-text {
+  background: linear-gradient(to right, var(--blue-primary), #ff65c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: waveColors 6s linear infinite;
+}
+
+.waving-text2 {
+  background: linear-gradient(to right, #ff65c3, #1b4fb4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  animation: waveColors 6s linear infinite;
+}
+
+/* ---------------------------------------------------------- */
