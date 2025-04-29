@@ -32,15 +32,15 @@ export interface NewsItem {
 
 export interface Match {
   id: number,
-  teamId: string,
+  team_id: string,
   opponent: string,
   date: string,
   time: string,
   location: string,
   division: string,
   result?: string,
-  videoURL?: string,
-  isAway: boolean
+  video_url?: string,
+  is_away: boolean
 }
 
 export interface Player {

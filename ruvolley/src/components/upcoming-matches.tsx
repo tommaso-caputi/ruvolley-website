@@ -40,10 +40,10 @@ export default function UpcomingMatches() {
             {matches.map((match, index) => (
                 <Card key={match.id ?? index} className="overflow-hidden py-0">
                     <CardContent className="p-0">
-                        <div className={`${match.teamId.charAt(match.teamId.length - 1) == 'f' ? "bg-purple-primary" : "bg-blue-primary"} p-4 text-white`}>
+                        <div className={`${match.team_id.charAt(match.team_id.length - 1) == 'f' ? "bg-purple-primary" : "bg-blue-primary"} p-4 text-white`}>
                             {match.division && <p className="text-sm font-medium">{match.division}</p>}
                             <h3 className="text-xl font-bold">
-                                {match.isAway ? `${match.opponent} vs Ruvolley` : `Ruvolley vs ${match.opponent}`}
+                                {match.is_away ? `${match.opponent} vs Ruvolley` : `Ruvolley vs ${match.opponent}`}
                             </h3>
                         </div>
                         <div className="p-4">

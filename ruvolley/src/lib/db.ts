@@ -8,87 +8,97 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 
 // Teams
 export async function getAllTeams(): Promise<Team[]> {
-  // Get basic team data and players
   const { data: teams, error: teamsError } = await supabase
     .from('teams')
     .select(`
       *,
-      players:players(*)
+      players:players(*),
+      coach:coaches!coach_id(*)
     `)
 
   if (teamsError) throw teamsError
 
-  // Get all matches
-  const { data: matches, error: matchesError } = await supabase
-    .from('matches')
-    .select('*')
-
-  if (matchesError) throw matchesError
-
-  // Process each team
   return teams.map(team => {
-    // Filter matches for this team
-    const teamMatches = matches.filter(match => match.teamId === team.id)
-    
-    // Calculate stats
-    const stats: Stats = {
-      wins: 0,
-      losses: 0,
-      setsWon: 0,
-      setsLost: 0,
-      pointsScored: 0,
-      pointsConceded: 0
-    }
-
-    teamMatches.forEach(match => {
-      if (match.result) {
-        const [teamScore, opponentScore] = match.result.split('-').map(Number)
-        if (teamScore > opponentScore) {
-          stats.wins++
-        } else {
-          stats.losses++
-        }
-        stats.setsWon += teamScore
-        stats.setsLost += opponentScore
-        stats.pointsScored += teamScore * 25 // Assuming 25 points per set
-        stats.pointsConceded += opponentScore * 25
-      }
-    })
-
-    // Separate matches into upcoming and past
-    const now = new Date()
-    const upcomingMatches = teamMatches
-      .filter(match => new Date(match.date) > now)
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    
-    const pastMatches = teamMatches
-      .filter(match => new Date(match.date) <= now)
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    const numberOfPlayers = team.players?.length || 0
 
     return {
       ...team,
-      stats,
-      upcomingMatches,
-      pastMatches
+      coach: team.coach,
+      numberOfPlayers
     }
   })
 }
 
 export async function getTeamById(id: string): Promise<Team | null> {
-  const { data, error } = await supabase
+  const { data: team, error: teamError } = await supabase
     .from('teams')
     .select(`
       *,
-      players:players(*),
-      stats:stats(*),
-      upcomingMatches:matches!matches_teamId_fkey(*),
-      pastMatches:matches!matches_teamId_fkey(*)
+      players:players(*), 
+      coach:coaches!coach_id(*)
     `)
     .eq('id', id)
     .single()
 
-  if (error) throw error
-  return data
+  if (teamError) throw teamError
+  if (!team) return null
+
+  const { data: matches, error: matchesError } = await supabase
+    .from('matches')
+    .select('*')
+    .eq('team_id', id)
+
+  if (matchesError) throw matchesError
+
+  const stats: Stats = {
+    wins: 0,
+    losses: 0,
+    setsWon: 0,
+    setsLost: 0,
+    pointsScored: 0,
+    pointsConceded: 0
+  }
+
+  matches.forEach(match => {
+    if (match.result) {
+      const [setA, setB] = match.result.split('-').map(Number)
+      const isAway = match.is_away
+
+      const teamSets = isAway ? setB : setA
+      const opponentSets = isAway ? setA : setB
+
+      if (teamSets > opponentSets) {
+        stats.wins++
+      } else {
+        stats.losses++
+      }
+
+      stats.setsWon += teamSets
+      stats.setsLost += opponentSets
+
+      stats.pointsScored += match.p_fatti || 0
+      stats.pointsConceded += match.p_subiti || 0
+    }
+  })
+
+  const now = new Date()
+  const upcomingMatches = matches
+    .filter(match => new Date(match.date) > now)
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+  const pastMatches = matches
+    .filter(match => new Date(match.date) <= now)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+  const numberOfPlayers = team.players?.length || 0
+
+  return {
+    ...team,
+    stats,
+    upcomingMatches,
+    pastMatches,
+    numberOfPlayers
+  }
 }
 
 // Players

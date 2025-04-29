@@ -55,23 +55,23 @@ export default function Footer() {
                     <h3 className="mb-4 text-lg font-bold">Squadre</h3>
                     <ul className="space-y-2">
                         <li>
-                            <Link href="/teams/s3" className="text-gray-400 hover:text-white">
-                                S3
+                            <Link href="/teams/s3-f" className="text-gray-400 hover:text-white">
+                                S3 femminile
                             </Link>
                         </li>
                         <li>
-                            <Link href="/teams/u17-mens" className="text-gray-400 hover:text-white">
+                            <Link href="/teams/u17-m" className="text-gray-400 hover:text-white">
                                 U17 maschile
                             </Link>
                         </li>
                         <li>
-                            <Link href="/teams/u14-womens" className="text-gray-400 hover:text-white">
-                                U14 femmilie
+                            <Link href="/teams/u14-w" className="text-gray-400 hover:text-white">
+                                U14 femminile
                             </Link>
                         </li>
                         <li>
-                            <Link href="/teams/2nd-division-mens" className="text-gray-400 hover:text-white">
-                                2nd Divisione maschile
+                            <Link href="/teams/2div-m" className="text-gray-400 hover:text-white">
+                                2div maschile
                             </Link>
                         </li>
                     </ul>

@@ -22,7 +22,7 @@ export default function Home() {
       <SocialPopup />
 
       {/* Hero section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 py-16 md:py-24">
+      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 py-16 md:py-24 px-8">
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">

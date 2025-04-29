@@ -101,8 +101,9 @@ export default function TeamsPage() {
                                     <div className="flex items-start">
                                         <Users className="mr-3 h-5 w-5 text-blue-600" />
                                         <div>
-                                            <h4 className="font-medium">Giocatori</h4>
-                                            <p className="mt-1 text-gray-600">{team.players.length} giocatori nel roster</p>
+                                            <h4 className="font-medium">Dettagli Squadra</h4>
+                                            <p className="mt-1 text-gray-600">Coach: {team.coach?.name}</p>
+                                            <p className="text-gray-600">Players: {team.players.length}</p>
                                         </div>
                                     </div>
                                 )}
