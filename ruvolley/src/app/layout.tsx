@@ -5,6 +5,7 @@ import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import FloatingSocialButtons from "@/components/floating-social-buttons"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,13 +20,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="it">
+      {/* <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <Navbar />
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
+      </body> */}
+      <body className={inter.className}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <FloatingSocialButtons />
       </body>
     </html>
   )

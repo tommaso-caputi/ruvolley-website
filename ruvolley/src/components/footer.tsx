@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin } from "lucide-react"
+import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react"
+import { socialVars } from "@/lib/utils"
 
 export default function Footer() {
     return (
@@ -11,9 +12,17 @@ export default function Footer() {
                         Descrizione veloce
                     </p>
                     <div className="mt-4 flex space-x-4">
-                        <Link href="#" className="text-gray-400 hover:text-white">
+                        <Link href={socialVars.facebook} className="text-gray-400 hover:text-white">
+                            <Facebook className="h-5 w-5" />
+                            <span className="sr-only">Facebook</span>
+                        </Link>
+                        <Link href={socialVars.instagram} className="text-gray-400 hover:text-white">
                             <Instagram className="h-5 w-5" />
                             <span className="sr-only">Instagram</span>
+                        </Link>
+                        <Link href={socialVars.youtube} className="text-gray-400 hover:text-white">
+                            <Youtube className="h-5 w-5" />
+                            <span className="sr-only">Twitter</span>
                         </Link>
                     </div>
                 </div>
@@ -87,7 +96,8 @@ export default function Footer() {
             </div>
             <div className="mt-8 border-t border-gray-800 pt-8 text-center">
                 <p className="text-sm text-gray-400">
-                    © {new Date().getFullYear()} Ruvolley. All rights reserved.
+                    {/* © {new Date().getFullYear()} Ruvolley. All rights reserved. */}
+                    © 2025 Ruvolley. All rights reserved.
                 </p>
             </div>
         </footer>

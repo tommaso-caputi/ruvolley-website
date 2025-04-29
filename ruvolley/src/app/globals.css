@@ -43,8 +43,12 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+@theme {
+  --color-blue-primary: #1b4fb4;
+  --color-purple-primary: #ff65c3;
+}
+
 :root {
-  --blue-primary: #1b4fb4;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -163,7 +167,7 @@
 }
 
 .waving-text {
-  background: linear-gradient(to right, var(--blue-primary), #ff65c3);
+  background: linear-gradient(to right, var(--color-blue-primary), var(--color-purple-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 100%;
@@ -171,7 +175,7 @@
 }
 
 .waving-text2 {
-  background: linear-gradient(to right, #ff65c3, #1b4fb4);
+  background: linear-gradient(to right, var(--color-purple-primary), var(--color-blue-primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% 100%;

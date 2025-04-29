@@ -26,11 +26,11 @@ export default function Navbar() {
                     {/* <Link href="/" className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600">
                         Home
                     </Link> */}
-                    <Link href="/teams" className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600">
-                        Squadre
-                    </Link>
                     <Link href="/schedule" className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600">
                         Calendari e risultati
+                    </Link>
+                    <Link href="/teams" className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600">
+                        Squadre
                     </Link>
                     <Link href="/sponsors" className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600">
                         Sponsors
@@ -63,18 +63,18 @@ export default function Navbar() {
                             Home
                         </Link> */}
                         <Link
-                            href="/teams"
-                            className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
-                            onClick={toggleMenu}
-                        >
-                            Teams
-                        </Link>
-                        <Link
                             href="/schedule"
                             className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
                             onClick={toggleMenu}
                         >
-                            Schedule
+                            Calendari e risultati
+                        </Link>
+                        <Link
+                            href="/teams"
+                            className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
+                            onClick={toggleMenu}
+                        >
+                            Squadre
                         </Link>
                         <Link
                             href="/sponsors"
@@ -88,7 +88,7 @@ export default function Navbar() {
                             className="text-sm font-medium text-gray-700 transition-colors hover:text-blue-600"
                             onClick={toggleMenu}
                         >
-                            News
+                            Notizie
                         </Link>
                         {/*  <Link
                             href="/about"
