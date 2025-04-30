@@ -7,8 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { getTeamById } from "@/lib/db"
 import MatchCard from "@/components/match-card"
 
-export default async function TeamDetailPage({ params }: { params: { teamId: string } }) {
-    const team = await getTeamById(params.teamId)
+export default async function TeamDetailPage({ params, }: { params: Promise<{ teamId: string }> }) {
+    const { teamId } = await params
+    const team = await getTeamById(teamId);
+
     if (!team) {
         notFound()
     }

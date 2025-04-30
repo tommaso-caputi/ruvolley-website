@@ -15,7 +15,7 @@ export default function SponsorShowcase() {
             {sponsors.map((sponsor) => (
                 <Link
                     key={sponsor.id}
-                    href={sponsor.url}
+                    href={sponsor.url || ""}
                     className="flex flex-col items-center rounded-lg border border-gray-200 p-4 text-center transition-all hover:border-blue-500 hover:shadow-md"
                 >
                     <div className="relative h-16 w-full">
