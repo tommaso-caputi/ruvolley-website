@@ -1,9 +1,7 @@
 "use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { CalendarDays, Clock, MapPin, Trophy } from "lucide-react"
-import { getAllTeams, getMatchesByTeam, getMatchesGroupedByTeam } from "@/lib/db"
+import { getAllTeams, getMatchesGroupedByTeam } from "@/lib/db"
 import { useEffect, useState } from "react"
 import { Match, Team } from "@/lib/utils"
 import MatchCard from "@/components/match-card"

@@ -1,6 +1,6 @@
 import { Match } from "@/lib/utils";
 import { Card, CardContent } from "./ui/card";
-import { CalendarDays, Clock, Play, Youtube } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Play, Youtube } from "lucide-react";
 
 type MatchCardProps = {
     match: Match;
@@ -31,8 +31,14 @@ export default function MatchCard({ match, index }: MatchCardProps) {
                         </div>
                     )}
                     {match.location && (
+                        <div className="mt-2 flex items-center text-sm text-gray-500">
+                            <MapPin className="mr-2 h-4 w-4" />
+                            <span>{match.location}</span>
+                        </div>
+                    )}
+                    {match.result && (
                         <div className="mt-4">
-                            <p className="font-medium">{match.location}</p>
+                            <p className="font-medium">Risultato: {match.result}</p>
                         </div>
                     )}
                     {match.video_url && (

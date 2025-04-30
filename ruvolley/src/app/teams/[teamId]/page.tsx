@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Calendar, MapPin, Trophy, ArrowLeft, Users, Youtube, Play } from "lucide-react"
+import { Calendar, MapPin, Trophy, ArrowLeft, Users } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { getTeamById } from "@/lib/db"

@@ -1,10 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { CalendarDays, Clock } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 import { Match } from "@/lib/utils"
 import { getUpcomingMatches } from "@/lib/db"
+import MatchCard from "./match-card"
 
 export default function UpcomingMatches() {
     const [matches, setMatches] = useState<Match[] | null>(null)
@@ -38,35 +37,7 @@ export default function UpcomingMatches() {
     return (
         <div className="grid gap-6 md:grid-cols-2">
             {matches.map((match, index) => (
-                <Card key={match.id ?? index} className="overflow-hidden py-0">
-                    <CardContent className="p-0">
-                        <div className={`${match.team_id.charAt(match.team_id.length - 1) == 'f' ? "bg-purple-primary" : "bg-blue-primary"} p-4 text-white`}>
-                            {match.division && <p className="text-sm font-medium">{match.division}</p>}
-                            <h3 className="text-xl font-bold">
-                                {match.is_away ? `${match.opponent} vs Ruvolley` : `Ruvolley vs ${match.opponent}`}
-                            </h3>
-                        </div>
-                        <div className="p-4">
-                            {match.date && (
-                                <div className="flex items-center text-sm text-gray-500">
-                                    <CalendarDays className="mr-2 h-4 w-4" />
-                                    <span>{match.date}</span>
-                                </div>
-                            )}
-                            {match.time && (
-                                <div className="mt-2 flex items-center text-sm text-gray-500">
-                                    <Clock className="mr-2 h-4 w-4" />
-                                    <span>{match.time.slice(0, 5)}</span>
-                                </div>
-                            )}
-                            {match.location && (
-                                <div className="mt-4">
-                                    <p className="font-medium">{match.location}</p>
-                                </div>
-                            )}
-                        </div>
-                    </CardContent>
-                </Card>
+                <MatchCard match={match} key={match.id} />
             ))}
         </div>
     )
