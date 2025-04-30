@@ -46,6 +46,7 @@
 @theme {
   --color-blue-primary: #1b4fb4;
   --color-purple-primary: #ff65c3;
+  --color-yellow-primary: #FFCF03;
 }
 
 :root {

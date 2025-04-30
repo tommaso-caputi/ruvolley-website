@@ -63,7 +63,7 @@ export default function TeamsPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {teams.map((team) => (
-                    <Card key={team.id} className="overflow-hidden">
+                    <Card key={team.id} className="flex flex-col overflow-hidden">
                         {team.image && (
                             <div className="relative h-48 w-full">
                                 <Image
@@ -82,7 +82,6 @@ export default function TeamsPage() {
                                 {team.description && (
                                     <p className="text-gray-600">{team.description}</p>
                                 )}
-
                                 {team.achievements && team.achievements.length > 0 && (
                                     <div className="flex items-start">
                                         <Trophy className="mr-3 h-5 w-5 text-yellow-600" />
@@ -122,9 +121,9 @@ export default function TeamsPage() {
                         <CardFooter>
                             <Link
                                 href={`/teams/${team.id}`}
-                                className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                                className="inline-flex items-center rounded-md px-4 py-2 text-sm font-medium text-white bg-yellow-primary text-gray-950"
                             >
-                                Dettagli Squadra
+                                Più Informazioni
                             </Link>
                         </CardFooter>
                     </Card>

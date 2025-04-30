@@ -19,13 +19,13 @@ export default function Home() {
         <div className="grid items-center gap-8 lg:grid-cols-2">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-              Passione per la <span className="text-yellow-400">Pallavolo</span>
+              Passione per la <span className="text-yellow-primary">Pallavolo</span>
             </h1>
             <p className="mt-4 text-lg text-blue-100 sm:text-xl">
               Unendo giocatori, tifosi e sponsor per celebrare lo sport che amiamo
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
-              <Button asChild size="lg" className="bg-yellow-500 text-blue-900 hover:bg-yellow-400">
+              <Button asChild size="lg" className="bg-yellow-primary text-blue-900 hover:bg-yellow-400">
                 <Link href="/schedule">Calendario Partite</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="">

@@ -209,11 +209,11 @@ export async function getAllNews(): Promise<NewsItem[]> {
   return data
 }
 
-export async function getNewsBySlug(slug: string): Promise<NewsItem | null> {
+export async function getNewsById(id: string): Promise<NewsItem | null> {
   const { data, error } = await supabase
     .from('news')
     .select('*')
-    .eq('slug', slug)
+    .eq('id', id)
     .single()
 
   if (error) throw error

@@ -11,7 +11,7 @@ export default function MatchCard({ match, index }: MatchCardProps) {
     return (
         <Card key={match.id ?? index} className="overflow-hidden py-0">
             <CardContent className="p-0">
-                <div className={`${match.team_id.charAt(match.team_id.length - 1) == 'f' ? "bg-purple-primary" : "bg-blue-primary"} p-4 text-white`}>
+                <div className={`${match.team_id.charAt(match.team_id.length - 1) == 'f' ? "bg-linear-to-r from-20% from-purple-primary to-blue-primary" : "bg-linear-to-r from-20% from-blue-primary to-purple-primary"} p-4 text-white`}>
                     {match.division && <p className="text-sm font-medium">{match.division}</p>}
                     <h3 className="text-xl font-bold">
                         {match.is_away ? `${match.opponent} vs Ruvolley` : `Ruvolley vs ${match.opponent}`}
