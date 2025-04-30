@@ -5,6 +5,7 @@ import { Calendar, MapPin, Trophy, ArrowLeft, Users, Youtube, Play } from "lucid
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { getTeamById } from "@/lib/db"
+import MatchCard from "@/components/match-card"
 
 export default async function TeamDetailPage({ params }: { params: { teamId: string } }) {
     const team = await getTeamById(params.teamId)
@@ -343,29 +344,7 @@ export default async function TeamDetailPage({ params }: { params: { teamId: str
                                 <CardContent>
                                     <div className="grid gap-4 md:grid-cols-2">
                                         {team.upcomingMatches?.map((match) => (
-                                            <div key={match.id} className="overflow-hidden rounded-lg border">
-                                                <div className={`p-4 text-white 
-                                                ${team.id.charAt(team.id.length - 1) === 'm'
-                                                        ? 'bg-blue-primary'
-                                                        : 'bg-purple-primary'
-                                                    }`}>
-                                                    <div className="text-lg font-bold">
-                                                        {match.is_away ? `${match.opponent} vs Ruvolley` : `Ruvolley vs ${match.opponent}`}
-                                                    </div>
-                                                </div>
-                                                <div className="p-4">
-                                                    <div className="flex items-center text-sm text-gray-500">
-                                                        <Calendar className="mr-2 h-4 w-4" />
-                                                        <span>
-                                                            {match.date}, {match.time.slice(0, 5)}
-                                                        </span>
-                                                    </div>
-                                                    <div className="mt-2 flex items-center text-sm text-gray-500">
-                                                        <MapPin className="mr-2 h-4 w-4" />
-                                                        <span>{match.location}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <MatchCard match={match} key={match.id} />
                                         ))}
                                     </div>
                                 </CardContent>
@@ -378,46 +357,7 @@ export default async function TeamDetailPage({ params }: { params: { teamId: str
                                 <CardContent>
                                     <div className="grid gap-4 md:grid-cols-2">
                                         {team.pastMatches?.map((match) => (
-                                            <div key={match.id} className="overflow-hidden rounded-lg border">
-                                                <div className={`p-4 text-white 
-                                                ${team.id.charAt(team.id.length - 1) === 'm'
-                                                        ? 'bg-blue-primary'
-                                                        : 'bg-purple-primary'
-                                                    }`}>
-                                                    <div className="text-lg font-bold">
-                                                        {match.is_away ? `${match.opponent} vs Ruvolley` : `Ruvolley vs ${match.opponent}`}
-                                                    </div>
-                                                </div>
-                                                <div className="p-4">
-                                                    <div className="flex items-center text-sm text-gray-500">
-                                                        <Calendar className="mr-2 h-4 w-4" />
-                                                        <span>
-                                                            {match.date}, {match.time.slice(0, 5)}
-                                                        </span>
-                                                    </div>
-                                                    <div className="mt-2 flex items-center text-sm text-gray-500">
-                                                        <MapPin className="mr-2 h-4 w-4" />
-                                                        <span>{match.location}</span>
-                                                    </div>
-                                                    <div className="mt-4">
-                                                        <p className="font-medium">Risultato: {match.result}</p>
-                                                    </div>
-                                                    {match.video_url && (
-                                                        <div className="mt-4">
-                                                            <a
-                                                                href={match.video_url}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="group inline-flex items-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700"
-                                                            >
-                                                                <Play className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                                                                Guarda la partita
-                                                                <Youtube className="ml-2 h-4 w-4" />
-                                                            </a>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
+                                            <MatchCard match={match} key={match.id} />
                                         ))}
                                     </div>
                                 </CardContent>

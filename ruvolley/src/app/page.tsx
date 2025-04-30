@@ -6,16 +6,9 @@ import SocialPopup from "@/components/social-popup";
 import UpcomingMatches from "@/components/upcoming-matches";
 import SponsorShowcase from "@/components/sponsor-showcase";
 import LatestNews from "@/components/latest-news";
-import { getAllTeams } from "@/lib/db";
-import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    const fetchTeams = async () => {
-      const teams = await getAllTeams()
-    }
-    fetchTeams()
-  }, [])
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Social Media Popup */}

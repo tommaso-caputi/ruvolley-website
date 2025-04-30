@@ -231,3 +231,40 @@ export async function getTeamStats(teamId: string): Promise<Stats | null> {
   if (error) throw error
   return data
 }
+export async function getMatchesGroupedByTeam(): Promise<Record<string, Match[]>> {
+  const { data: matches, error } = await supabase
+    .from('matches')
+    .select(`
+      *,
+      team:teams(name)
+    `);
+
+  if (error) throw error;
+
+  // Log the structure of the first match to check where the teamId is located
+  console.log(matches[0]);  // Check this to see if teamId is in the correct field
+
+  // Create an object to hold the grouped matches
+  const matchesByTeam: Record<string, Match[]> = {};
+
+  matches.forEach((match) => {
+    // Ensure we're using the correct property for the teamId
+    const teamId = match.team_id; // Adjust this based on your actual data structure
+
+    if (teamId === undefined) {
+      console.warn('Skipping match with undefined teamId', match); // Debugging log
+      return;
+    }
+
+    if (!matchesByTeam[teamId]) {
+      matchesByTeam[teamId] = [];
+    }
+
+    matchesByTeam[teamId].push({
+      ...match,
+      teamName: match.team?.name || 'Unknown', // Fallback to 'Unknown' if team name is missing
+    });
+  });
+
+  return matchesByTeam;
+}
